@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <title></title>
+    <style>
+      body {
+        background-image: url("{% static 'imagesign.jpg' %}");
+        background-size: cover;
+        background-repeat: no-repeat;}
+      </style>
+    
+   
+</head>
+<body  >
+{% include 'partials/navbar.html' %}
+
+
+
+<div style="position: absolute;
+left: 100px;
+width: 500px;
+margin-top:200px;
+">
+<h2>Sign Up</h2>
+     
+ 
+  <form method="post">
+  
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class= "btn btn-info">Sign Up</button>
+    
+
+
+  </form>
+</div>
+
+</div>
+</div>
+</div>
+
+  
+ 
+</body>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<head>
+    {% load static %}
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	
+    <title>Add Water Intake</title>
+    <style>
+        .inline-heading {
+            display: inline-block;
+            color: #00ffff;
+        }
+        .container {
+            display: inline-block;
+        }
+       
+        body {
+                background-image: url("{% static 'background.jpg' %}");
+                background-size: cover;
+                background-repeat: no-repeat;
+               
+            }
+       
+    </style>
+    
+
+</head>
+
+<body >
+  {% include 'partials/navbar.html' %}
+  <br><br>
+  
+  <h2 style="color:#000080;" class="container">
+    Welcome <span class="inline-heading">{{ name }}</span> , Let's add your Intake</h2>
+    <div style="position: absolute;
+                left: 300px;
+                width: 500px;
+                margin-top:100px;">
+                
+  
+    <h3 style="color:#555555">Add Water Intake</h3>
+    <form method="post">
+        {% csrf_token %}
+
+        {{form}}
+        <button type="submit" class="btn btn-info">Add Intake</button>
+    </form>
+</div>
+</body>
+</html>

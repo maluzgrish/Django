@@ -1,0 +1,41 @@
+{% extends 'layout/app-layout.html' %}
+{% block 'content' %}
+<div class="center">
+    <ul>
+        {% for intake in page_obj %}
+            <li> <h5 style=" color:#555555;"><b>Date And Time:</h5></b><h6 style=" color:#de5426;">{{ intake.date }}</h6> <br> <b><h5 style=" color:#555555;">Quantity in L:</h5></b>
+           <h6 style=" color:#de5426;"> {{ intake.quantity}}</h6></li>
+        {% endfor %}
+    </ul>
+</div>
+<nav aria-label="Page navigation example" style="margin:auto;">
+        {% if page_obj.has_previous %}
+            
+                <a href="?page=1" class="page-link">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="page-link" aria-label="previous">&laquo; previous</a>
+        {% endif %}
+
+        {% for page_number in page_obj.paginator.get_elided_page_range %}
+            {% if page_obj.number == page_number %}
+                    <span class="page-link">{{ page_number }}</span>
+            {% else %}
+                    <a href="?page={{ page_number }}" class="page-link">{{ page_number }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="page-link">next &raquo;</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">last &raquo;</a>
+        {% endif %}
+</nav>
+{% endblock %}
+@login_required(login_url='home')
+def listing(request):
+    intakes = Waterintake.objects.filter(user=request.user)
+    paginator = Paginator(intakes, 3)  # Set the number of items per page
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'list.html', {'page_obj': page_obj})
+

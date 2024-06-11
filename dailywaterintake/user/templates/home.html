@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<title> Homepage</title>
+    <style>
+        .card {
+            width: 700px;
+            height:675px;
+            background-image:linear-gradient(rgb(109, 183, 207) ,rgb(250,225,215));
+        }
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-title {
+            font-size: 40px;
+            color: #555555;
+            margin:0 auto;
+            width:400px;
+            padding-top:100px;
+        }
+        
+        .card-description {
+            font-size: 30px;
+            color: #555555;
+            padding-top:150px;
+        }
+        .card-message {
+            font-size: 20px;
+            color: #555555;
+            
+        }
+        
+
+    </style>
+    
+    
+</head>
+<body>
+  {% include 'partials/navbar.html' %}
+    
+        <div class="container-fluid">
+              <div class="row">
+                <div class="col md-6 mt-1  ">
+                    <img src="{% static 'imagew.jpg ' %}" style="width:750px;height:675px;">
+                </div>
+                <div class="col md-6">
+                    <div class="col md-4  mt-1">
+                        <div class="card">
+                           
+                            <div class="card-content">
+                                <h3 class="card-title">DAILY WATER INTAKE</h3>
+                                <p class="card-description">Know how much water you should be drinking daily</p>
+                                <p class="card-message">Lets create new account  <button type="button" class=" btn btn-info  " style="	width :200px;"	> <a href="{% url 'signup'%}" style="color:black;"> SIGNUP</a>	</button> </p>
+                                <p class="	text-black text-center ">Already have an account? <a href="{% url 'login' %}" >Login here</a></p>
+                            </div>
+	   	
+                            
+                        </div>
+                           
+                   
+                                
+                            </div>
+                        </div>
+                        
+
+                        
+                           
+
+
+                </div>
+
+        </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-sm bg-info navbar-dark">
+        
+        <div class="navbar-header">
+  <h3>WaterIntake Site</h3>
+  
+</div>
+
+       <ul class="navbar-nav">
+         <li class="nav-item">
+            <a class="nav-link active " href="{% url 'home'%}">Home</a>
+          {% if user.is_authenticated %}
+         </li>
+         <li class="nav-item">
+            <a class="nav-link " href="{% url 'add'%}">AddIntake</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'list'%}">ViewIntake</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'logout'%}">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'difference'%}">Intake Tracker</a>
+          </li>
+          
+          {% else %}
+         <li class="nav-item">
+            <a class="nav-link  " href="{% url 'signup'%}">Signup</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'login'%}">Login</a>
+          </li>
+          {% endif %}
+      </ul>
+      <div style="margin-left:500px;">
+        {% if user.is_authenticated %}
+           <h3 style="color:#000080;"> Welcome, {{ user.username }}!</h3>
+       
+        {% endif %}
+    </div>
+    </nav>

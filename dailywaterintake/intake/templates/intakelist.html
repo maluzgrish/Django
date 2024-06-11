@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html >
+<head>
+    {% load static%}
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <title>Water Intake List</title>
+    <style>
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin:0 auto;
+            
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            background-color:#7ec28a;
+        }
+        th {
+            background-color:#28c945;
+           
+        }
+        body {
+            background-image: url("{% static 'image1.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+           
+        }
+       
+    </style>
+</head>
+<body>
+  {% include 'partials/navbar.html' %}
+        <br><br><br>
+    <h1 style="color:#000080;text-align:center;">Water Intake List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date And Time</th>
+                <th>Quantity (liters)</th>
+                <th colspan="2">Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for intake in page_obj  %}
+            <tr>
+                <td>{{ intake.date }}</td>
+                
+                <td>{{ intake.quantity }}</td>
+                <td ><a href="{%url 'updateintake' intake.id %}" class="btn btn-success" value="edit" type="submit">Edit</a></td>
+                <td><a href="{%url 'deleteintake' intake.id %}" class="btn btn-success" value="edit" type="submit">Delete</a></td></tr>
+                {% empty %}
+                <p><h3>No water intake recorded yet.</h3></p>
+            
+            {% endfor %}
+        </tbody>
+    </table>
+    <br><br><br>
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+          
+              <a href="?page=1" class="page-link">&laquo; first</a>
+              <a href="?page={{ page_obj.previous_page_number }}" class="page-link" aria-label="previous">&laquo; previous</a>
+      {% endif %}
+
+      {% for page_number in page_obj.paginator.get_elided_page_range %}
+          {% if page_obj.number == page_number %}
+                  <span class="page-link">{{ page_number }}</span>
+          {% else %}
+                  <a href="?page={{ page_number }}" class="page-link">{{ page_number }}</a>
+          {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}" class="page-link">next &raquo;</a>
+              <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">last &raquo;</a>
+      {% endif %}
+    </ul>
+</body>
+</html>
